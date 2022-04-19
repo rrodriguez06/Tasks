@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { TaskFindManyArgs } from "../../task/base/TaskFindManyArgs";
+import { Task } from "../../task/base/Task";
 import { UserService } from "../user.service";
 
 @graphql.Resolver(() => User)
@@ -200,5 +202,31 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.ResolveField(() => [Task])
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async tasks(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: TaskFindManyArgs,
+    @gqlUserRoles.UserRoles() userRoles: string[]
+  ): Promise<Task[]> {
+    const permission = this.rolesBuilder.permission({
+      role: userRoles,
+      action: "read",
+      possession: "any",
+      resource: "Task",
+    });
+    const results = await this.service.findTasks(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results.map((result) => permission.filter(result));
   }
 }
