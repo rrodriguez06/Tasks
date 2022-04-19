@@ -85,6 +85,7 @@ export class TaskControllerBase {
         due: true,
         id: true,
         name: true,
+        status: true,
         updatedAt: true,
 
         user: {
@@ -130,6 +131,7 @@ export class TaskControllerBase {
         due: true,
         id: true,
         name: true,
+        status: true,
         updatedAt: true,
 
         user: {
@@ -174,6 +176,7 @@ export class TaskControllerBase {
         due: true,
         id: true,
         name: true,
+        status: true,
         updatedAt: true,
 
         user: {
@@ -247,6 +250,7 @@ export class TaskControllerBase {
           due: true,
           id: true,
           name: true,
+          status: true,
           updatedAt: true,
 
           user: {
@@ -292,6 +296,7 @@ export class TaskControllerBase {
           due: true,
           id: true,
           name: true,
+          status: true,
           updatedAt: true,
 
           user: {

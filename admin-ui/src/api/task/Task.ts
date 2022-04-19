@@ -6,6 +6,7 @@ export type Task = {
   due: Date | null;
   id: string;
   name: string | null;
+  status?: "ToDo" | "Done" | null;
   updatedAt: Date;
   user?: User | null;
 };

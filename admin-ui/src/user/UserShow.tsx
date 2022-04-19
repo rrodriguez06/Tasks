@@ -31,6 +31,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="Due" source="due" />
             <TextField label="ID" source="id" />
             <TextField label="Name" source="name" />
+            <TextField label="Status" source="status" />
             <DateField source="updatedAt" label="Updated At" />
             <ReferenceField label="User" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
