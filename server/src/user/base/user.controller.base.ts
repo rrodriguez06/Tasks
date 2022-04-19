@@ -305,6 +305,7 @@ export class UserControllerBase {
         due: true,
         id: true,
         name: true,
+        status: true,
         updatedAt: true,
 
         user: {

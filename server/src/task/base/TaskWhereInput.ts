@@ -13,9 +13,10 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { EnumTaskStatus } from "./EnumTaskStatus";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TaskWhereInput {
@@ -62,6 +63,17 @@ class TaskWhereInput {
     nullable: true,
   })
   name?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumTaskStatus,
+  })
+  @IsEnum(EnumTaskStatus)
+  @IsOptional()
+  @Field(() => EnumTaskStatus, {
+    nullable: true,
+  })
+  status?: "ToDo" | "Done";
 
   @ApiProperty({
     required: false,

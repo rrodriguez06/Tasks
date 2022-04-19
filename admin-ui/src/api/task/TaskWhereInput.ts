@@ -8,5 +8,6 @@ export type TaskWhereInput = {
   due?: DateTimeNullableFilter;
   id?: StringFilter;
   name?: StringNullableFilter;
+  status?: "ToDo" | "Done";
   user?: UserWhereUniqueInput;
 };
