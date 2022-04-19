@@ -17,3 +17,12 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model Task {
+  createdAt   DateTime  @default(now())
+  description String?
+  due         DateTime?
+  id          String    @id @default(cuid())
+  name        String?
+  updatedAt   DateTime  @updatedAt
+}
